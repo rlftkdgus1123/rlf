@@ -22,9 +22,9 @@ class Exit(Entity):
     def __init__(self,i,j):
         super().__init__(
             model = 'cube',
-            color = color.black90,
-            scale = (5,100,5),
-            position = (i*5,0,j*5),
+            color = color.black,
+            scale = (5,5,5),
+            position = (i*5,-4,j*5),
             collider = 'box'
             )
         
@@ -34,6 +34,7 @@ class Exit(Entity):
             scale = 2,
             origin = (0,0),
             visible = False
+            
         )
 
     def update(self):
@@ -52,25 +53,25 @@ def input(key):
 
 player = Player()
 
-EditorCamera()
+#EditorCamera()
 
 
 zk = Entity(
-     model = 'ee/covered_car_4k.fbx',
-     texture = 'eee/카.jpg',
-     scale = (0.01) ,
-     collider= 'mesh'
+     #model = 'ee/covered_car_4k.fbx',
+     #texture = 'eee/카.jpg',
+     #scale = (0.01) ,
+     #collider= 'mesh'
 
 )
 
 
 ground = Entity(
     model = 'plane',
-    #color = color.black,
+    color = color.blue,
     position = (0,-10,0),
     scale = (2000,1,2000),
     collider= 'mesh', #mash는 물체의 충돌 설정
-    texture = 'painted_brick_diff_4k.jpg'
+    #texture = 'painted_brick_diff_4k.jpg'
 
 )
 
@@ -106,7 +107,8 @@ for i in range( len(MAP) ):
                     continue
 
                 if  MAP[i][j] == 'e':
-                    esifdoor = Exit(i,j)
+                    #esifdoor = Exit(i,j)
+                    esifdoor = Exit(i*5,j*5)
                     continue
 
                 if MAP[i][j]=='z':
@@ -115,11 +117,11 @@ for i in range( len(MAP) ):
 
                 wall = Entity(
                     model ='cube',
-                    #color = color.red,
+                    color = color.red,
                     scale = (8,80,8),
                     position = (8*i,-8,8*j),
                     collider = 'box',
-                    texture = 'painted_brick_disp_4k.png'
+                    #texture = 'painted_brick_disp_4k.png'
                     )
             
                  
