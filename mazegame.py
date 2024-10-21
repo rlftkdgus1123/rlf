@@ -18,15 +18,25 @@ class Player(FirstPersonController):
             scale = 5
         )
 
+
+
+class Warp():
+    def __init__(self):
+        super().__init__(
+
+        )
+
+
+
 class Exit(Entity):
     def __init__(self,i,j):
         super().__init__(
             model = 'cube',
             color = color.black,
-            scale = (5,5,5),
+            scale = (30,100,30),
             position = (i*5,-4,j*5),
             collider = 'box'
-            )
+        )
         
         self.player = player
         self.text = Text(
@@ -106,10 +116,9 @@ for i in range( len(MAP) ):
                     player.position = (i*5,0,j*5)
                     continue
 
-                if  MAP[i][j] == 'e':
-                    #esifdoor = Exit(i,j)
-                    esifdoor = Exit(i*5,j*5)
-                    continue
+                if MAP[i][j] == 'e':
+                 exitdoor = Exit(i,j)
+                 continue
 
                 if MAP[i][j]=='z':
                     zk.position = (i*6,-9,j*5)
@@ -124,7 +133,7 @@ for i in range( len(MAP) ):
                     #texture = 'painted_brick_disp_4k.png'
                     )
             
-                 
+
 
 
 
