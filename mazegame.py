@@ -13,18 +13,24 @@ class Player(FirstPersonController):
         super().__init__( 
             model = 'cube',
             Collider = 'mesh',
-            color = color.blue,
+            color = color.green,
             speed = 30,
             scale = 5
         )
 
 
 
-class Warp():
-    def __init__(self):
+class Warp(Entity):
+    def __init__(self, i, j):
         super().__init__(
-
+            model='cube',
+            color=color.white,  # 흰색으로 설정
+            scale=(8, 80, 8),
+            position=(8 * i, -8, 8 * j),
+            collider='box'
         )
+        self.color = color.color(1, 1, 1, 0)
+
 
 
 
@@ -34,7 +40,7 @@ class Exit(Entity):
             model = 'cube',
             scale = (5, 5, 5),
             color = color.black90,
-            position = (i*8, -5, j*8),
+            position = (i*8, -11, j*8),
             collider = 'box'
         )
         self.player = player
@@ -86,7 +92,7 @@ ground = Entity(
 
 MAP = [
     [10,__,'p',10,15,40,30,60,30,20,40,10,49,28,40,58,29,58,18,14,68,63,58,23],
-    [10,__,10,10,__,__,__,60,30,20,40,__,__,28,40,58,__,__,__,__,68,__,__,'e'],
+    [10,'w',10,10,__,__,__,60,30,20,40,__,__,28,40,58,__,__,__,__,68,__,__,'e'],
     [10,__,__,__,__,40,__,__,__,__,__,__,49,28,40,__,__,58,18,__,68,__,58,23],
     [10,__,10,10,__,40,30,60,__,20,40,10,49,__,__,__,29,__,__,__,68,__,__,23],
     [10,__,10,__,__,40,__,__,__,20,40,10,49,__,40,__,29,__,18,14,__,63,__,23],
@@ -117,6 +123,10 @@ for i in range( len(MAP) ):
                 if MAP[i][j] == 'e':
                  exitdoor = Exit(i,j)
                  continue
+
+                if MAP[i][j] == 'w':
+                    warp = Warp(i,j)
+                    continue
 
                 if MAP[i][j]=='z':
                     zk.position = (i*6,-9,j*5)
