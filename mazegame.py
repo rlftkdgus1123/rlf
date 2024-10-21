@@ -29,34 +29,32 @@ class Warp():
 
 
 class Exit(Entity):
-    def __init__(self,i,j):
+    def __init__(self, i, j):
         super().__init__(
             model = 'cube',
-            color = color.black,
-            scale = (30,100,30),
-            position = (i*5,-4,j*5),
+            scale = (5, 5, 5),
+            color = color.black90,
+            position = (i*8, -5, j*8),
             collider = 'box'
         )
-        
         self.player = player
         self.text = Text(
-            text = "GG!!",
+            text = 'Escape complete // GG !!',
             scale = 2,
-            origin = (0,0),
+            origin = (0, 0),
             visible = False
-            
         )
-
     def update(self):
-        self.clear()
-
+        self.clear()    
     def clear(self):
-        dis = (self.player.position -self.position).length()
+        dis = (self.player.position - self.position).length()
         print(dis)
-        if dis < 3 :
-            self.player.enable= False
+        if dis < 3:
+            self.player.enabled = False
             self.text.visible = True
-     
+
+
+
 def input(key):
     if key == 'escape':
         app.quit()
