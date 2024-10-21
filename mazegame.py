@@ -20,19 +20,29 @@ class Player(FirstPersonController):
 
 
 
+
 class Warp(Entity):
-    def __init__(self, i, j):
+    def __init__(self,i,j):
         super().__init__(
-            model='cube',
+            warp = Entity(
+               model='cube',
             color=color.white,  # 흰색으로 설정
             scale=(8, 80, 8),
             position=(8 * i, -8, 8 * j),
             collider='box'
-        )
-        self.color = color.color(1, 1, 1, 0)
+            )
+                
+            )
+        self.color = color.color(1, 1, 1, 0.5)
+        self.a = player
 
+    def update(self):
+            self.abcd()
+            
 
-
+    def abcd(self): #플레이어 충돌 감지
+        if self.warp.intersects(self.a):
+            self.a.position = (95, 3 , 90)
 
 class Exit(Entity):
     def __init__(self, i, j):
@@ -131,6 +141,8 @@ for i in range( len(MAP) ):
                 if MAP[i][j]=='z':
                     zk.position = (i*6,-9,j*5)
                     continue
+                
+                wp = (8*i,-9,8*j)
 
                 wall = Entity(
                     model ='cube',
