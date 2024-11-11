@@ -26,26 +26,24 @@ class Player(FirstPersonController):
             speed = 30,
             scale = 5
         )
-
+        
 
 
 class Coin(Entity):
-    def __init__(self,x,z):
-        super(). __init__(
-            coin = Entity(
-                model = 'sphere',
-                color = color.yellow,
-                scale = (6,6,1),
-                position = (x * 8,-8,z* 8),
-                double_sided = True,
-                Collider = 'box'
-            )
+    def __init__(self, x, z):
+        super().__init__(
+            model='sphere',
+            color=color.yellow,
+            scale=(6, 6, 1),
+            position=(x * 8, -8, z * 8),
+            double_sided=True,
+            collider='box'  # 충돌을 감지할 수 있는 콜라이더 추가
         )
     
     def update(self):
-        self.coin.rotation_y += 1
-        if self.coin.intersects(player):
-            destroy
+        self.rotation_y += 1  # 동전을 회전시키기
+        if self.intersects(player):  # 플레이어와의 충돌 체크
+            destroy(self)  # 충돌 시 동전 객체 삭제
 
 
 
