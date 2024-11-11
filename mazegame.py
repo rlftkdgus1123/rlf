@@ -12,7 +12,7 @@ class Player(FirstPersonController):
     def __init__(self):
         super().__init__( 
             model = 'cube',
-            Collider = 'mesh',
+            Collider = 'box',
             color = color.green,
             speed = 30,
             scale = 5
@@ -41,7 +41,7 @@ class Warp(Entity):
             
 
     def abcd(self): #플레이어 충돌 감지
-        if self.warp.intersects(self.a):
+        if self.intersects(self.a):
             self.a.position = (95, 3 , 90)
 
 class Exit(Entity):
